@@ -14,6 +14,18 @@ sudo apt-get -y install php7.0 php7.0-common php7.0-cgi php7.0-fpm php7.0-pgsql 
 sudo apt-get -y install libapache2-mod-php7.0
 sudo service apache2 restart
 
-#prerequisates for rgdal and rgeos libraries
-sudo aptitude -y install libgdal-dev
-sudo aptitude -y install libproj-de
+sudo apt-get -y build-dep gdal
+
+wget http://download.osgeo.org/gdal/2.1.0/gdal-2.1.0.tar.gz
+tar xvzf gdal-2.1.0.tar.gz
+
+cd gdal-2.1.0/
+./configure --prefix=/usr/
+make
+sudo make install
+cd swig/python/
+sudo python setup.py install
+
+sudo apt-get -y install libudunits2-dev
+
+sudo apt-get -y install libv8-3.14-dev
